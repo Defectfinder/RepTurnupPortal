@@ -141,12 +141,13 @@ public class Program
         }
 
         //Deleting the code
-        IWebElement deleteButton = driver.FindElement(By.XPath("/html/body/div[4]/div/div/div[3]/table/tbody/tr[4]/td[5]/a[2]"));
+        IWebElement deleteButton = driver.FindElement(By.XPath("/html/body/div[4]/div/div/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
         deleteButton.Click();
+        Thread.Sleep(2000);
         //Alert delete 
         IAlert okDeleteItem = driver.SwitchTo().Alert();
         okDeleteItem.Accept();
-        //\test commit
+        
 
 
     }
