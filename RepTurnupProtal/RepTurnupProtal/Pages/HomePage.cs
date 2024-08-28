@@ -9,8 +9,10 @@ namespace RepTurnupProtal.Pages
 {
     public class HomePage
     {
+        
+       
         public void NavigateToTMpage(IWebDriver driver)
-      
+
         {
             // Create the Time and Marterial record
             // Navigate to the Time and Marterial
@@ -18,6 +20,16 @@ namespace RepTurnupProtal.Pages
             administrationTab.Click();
             IWebElement timeAndMatertialOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
             timeAndMatertialOption.Click();
+        }
+        public void NavigateToCustomerPage(IWebDriver driver)
+        {
+            // Create the Customer Record
+            // Navigate to the Customer page
+            IWebElement administrationTab = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
+            administrationTab.Click();
+            IWebElement CustomerOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[1]/a"));
+            CustomerOption.Click();
+
         }
     }
 }

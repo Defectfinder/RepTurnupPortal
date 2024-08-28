@@ -1,9 +1,11 @@
 ﻿using OpenQA.Selenium;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium.DevTools.V125.Animation;
 
 namespace RepTurnupProtal.Pages
 {
@@ -11,9 +13,17 @@ namespace RepTurnupProtal.Pages
     {
         public void CreateTimeRecord(IWebDriver driver)
         {
-            // Create new button
-            IWebElement createNewButton = driver.FindElement(By.XPath("//*[@id=\"container\"]/p/a"));
-            createNewButton.Click();
+            try
+            {
+                // Create new button
+                IWebElement createNewButton = driver.FindElement(By.XPath("//*[@id=\"container\"]/p/a"));
+                createNewButton.Click();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Unable to click New button");
+            }
+            
             //Select time from dropdown
             IWebElement typeCodeDropdown = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[1]/div/span[1]/span/span[1]"));
             typeCodeDropdown.Click();
@@ -45,14 +55,15 @@ namespace RepTurnupProtal.Pages
 
             IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
 
-            if (newCode.Text == "XYZ123")
-            {
-                Console.WriteLine("Time record created successfully");
-            }
-            else
-            {
-                Console.WriteLine("New record is not created");
-            }
+            Assert.That(newCode.Text == "XYZ123", "The New record is not created");
+            //if (newCode.Text == "XYZ123")
+            //{
+               // Assert.Pass("Time record created successfully");
+            //}
+           // else
+           // {
+           //     Assert.Fail("New record is not created");
+           // }
         }
         public void EditTimeRecord(IWebDriver driver)
         {
@@ -100,16 +111,7 @@ namespace RepTurnupProtal.Pages
             IWebElement goToeditLastButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
             goToeditLastButton.Click();
 
-            IWebElement neweditCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
-
-            if (neweditCode.Text == "XYZ123")
-            {
-                Console.WriteLine("Time record Edited successfully");
-            }
-            else
-            {
-                Console.WriteLine("New record is not Edited");
-            }
+            
 
         }
         public void DeleteRecord(IWebDriver driver)
